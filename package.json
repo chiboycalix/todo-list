@@ -1,0 +1,33 @@
+{
+  "name": "todo-list",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "^1.1.9",
+    "@types/figlet": "^1.5.8",
+    "drizzle-kit": "^0.24.2"
+  },
+  "scripts": {
+    "start": "bun run --env-file=.env.production ./server/index.ts",
+    "dev": "bun --env-file=.env --hot ./server/index.ts",
+    "build": "bun build ./server/index.ts --outdir ./dist",
+    "test:watch": "bun test --watch",
+    "create:schema": "bunx drizzle-kit generate --dialect postgresql --schema ./server/schema/index.ts --out ./drizzle",
+    "migrate": "bun run ./server/migrate/index.ts",
+    "seed:todos": "bun run ./server/seed/todos.ts",
+    "clean": "rm -rf dist && echo 'Done.'"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.5",
+    "@types/express": "^4.17.21",
+    "body-parser": "^1.20.3",
+    "drizzle-orm": "^0.33.0",
+    "express": "^4.20.0",
+    "figlet": "^1.7.0",
+    "joi": "^17.13.3",
+    "supertest": "^7.0.0"
+  }
+}
